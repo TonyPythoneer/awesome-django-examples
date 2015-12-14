@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#  @first_date    2015
+#  @date          2015
+#  @version       0.1
+"""local settings
+"""
+from __future__ import unicode_literals
+
+DEBUG = False
+ALLOWED_HOSTS = ['*']
+
+SHA256_MAGIC = ''
+HTTP_HEADER_KEY = {'X-XSS-Protection': '1;mode=block',
+                   'X-Content-Type-Options': 'nosniff'}
+
+TOKEN_EXPIRED_TIME = 86400  # Seconds
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'localhost',
+        'PORT': 3306,
+        'NAME': 'perfect-drf-project',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'ENCODING': 'utf-8',
+    }
+}

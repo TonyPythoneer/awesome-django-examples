@@ -1,0 +1,12 @@
+# Test dependencies go here.
+-r base.txt
+
+# Python-PostgreSQL Database Adapter
+# If using Win for dev, this assumes Unix in test/prod
+psycopg2==2.6.1
+
+# It's for jenkins ci
+django-jenkins
+coverage==4.0.3
+pyflakes
+pep8

@@ -1,0 +1,9 @@
+# Bleeding edge Django
+django==1.8.7  # rq.filter: >=1.8,<1.9
+djangorestframework==3.3.0
+
+# Redis support
+django-redis==4.3.0
+redis>=2.10.0
+
+# Your custom requirements go here
