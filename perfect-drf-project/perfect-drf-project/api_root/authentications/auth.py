@@ -15,6 +15,12 @@ from rest_framework.authentication import TokenAuthentication, get_authorization
 from rest_framework.authtoken.models import Token
 
 
+try:
+    from django.conf.settings import EXPIRING_TOKEN_LIFESPAN
+except ImportError:
+    EXPIRING_TOKEN_LIFESPAN = 60 * 60  # 60*60*24 # Default: Expired after one hour
+
+
 class ExpiringTokenAuthentication(TokenAuthentication):
     """Add inspecting expired token feature, for the admin's exclusive use.
 
@@ -34,9 +40,13 @@ class ExpiringTokenAuthentication(TokenAuthentication):
         auth = get_authorization_header(request).split()
 
         # Validation process: Don't allow the not containing token
+        '''
         if not auth or auth[0].lower() != b'token':
             msg = _('Invalid token header. No credentials provided.')
             raise exceptions.AuthenticationFailed(msg)
+        '''
+        if not auth or auth[0].lower() != b'token':
+            return None
 
         if len(auth) == 1:
             msg = _('Invalid token header. No credentials provided.')
