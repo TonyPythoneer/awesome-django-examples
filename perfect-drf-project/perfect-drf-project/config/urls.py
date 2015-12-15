@@ -16,16 +16,21 @@ Including another URLconf
 from django.conf.urls import include, url
 #from django.contrib import admin
 
-from api_root import views
+#from api_root import views
 
 
 versioning_api_urlpatterns = [
     url(r'', include('v1.urls', namespace='default')),  # Default versioning api url
-    url(r'^v1/', include('v1.urls', namespace='v1')),  # Versioning api url
+    url(r'^v1/$', include('v1.urls', namespace='v1')),  # Versioning api url
 ]
 
-api_root_urlpatterns = [
+third_party_urlpatterns = [
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+]
+
+local_app_urlpatterns = [
+    url(r'^apis/', include(versioning_api_urlpatterns, namespace='apis')),
     #url(r'', views.api_root, name='api_root'),
 ]
 
-urlpatterns = versioning_api_urlpatterns + api_root_urlpatterns
+urlpatterns = local_app_urlpatterns + third_party_urlpatterns
