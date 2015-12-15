@@ -16,6 +16,8 @@ HTTP_HEADER_KEY = {'X-XSS-Protection': '1;mode=block',
 
 TOKEN_EXPIRED_TIME = 86400  # Seconds
 
+# Database
+# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
