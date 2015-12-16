@@ -20,8 +20,33 @@ class SignUpSerializer(serializers.ModelSerializer):
         fields = ('username', 'email', 'password', 'first_name', 'last_name')
 
     def save(self, *args, **kwargs):
-        """
-        Use the `pygments` library to create a highlighted HTML
-        representation of the code snippet.
+        """create user
         """
         User.objects.create_user(**self.validated_data)
+    '''
+    def validate(self, data):
+        """
+        Check that the start is before the stop.
+        """
+        username = data.get('username', None)
+        if username:
+            raise serializers.ValidationError({'a': 55, 'b': 99})
+        return data
+    '''
+    '''
+    def to_internal_value(self, data):
+        """
+        """
+        #validity = self.is_valid()
+        #import pdb; pdb.set_trace();
+
+        #if data['start'] > data['finish']:
+        #    raise serializers.ValidationError("finish must occur after start")
+        return data
+    '''
+    def to_representation(self, obj):
+        """Delete important info, for instance, password
+        """
+        ret = super(SignUpSerializer, self).to_representation(obj)
+        ret.pop("password", None)
+        return ret
