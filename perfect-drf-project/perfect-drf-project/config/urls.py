@@ -14,23 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
-#from django.contrib import admin
-
-#from api_root import views
 
 
 versioning_api_urlpatterns = [
     url(r'', include('v1.urls', namespace='default')),  # Default versioning api url
-    url(r'^v1/$', include('v1.urls', namespace='v1')),  # Versioning api url
+    url(r'^v1/', include('v1.urls', namespace='v1')),  # Versioning api url
 ]
 
 third_party_urlpatterns = [
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 local_app_urlpatterns = [
-    url(r'^apis/', include(versioning_api_urlpatterns, namespace='apis')),
-    #url(r'', views.api_root, name='api_root'),
+    url(r'^api/', include(versioning_api_urlpatterns, namespace='api')),
+    url(r'^$', include('api_root.urls', namespace='api_root')),
 ]
 
 urlpatterns = local_app_urlpatterns + third_party_urlpatterns

@@ -1,6 +1,23 @@
 from django.conf.urls import patterns, url
 
-from rest_auth.views import (
+from rest_framework.routers import DefaultRouter
+
+from .views import SignUpView
+
+
+urlpatterns = [
+    url(r'^register/?$', SignUpView.as_view(), name='register'),
+]
+
+
+'''
+router = DefaultRouter()
+router.register('users', UserViewSet)
+urlpatterns = router.urls
+'''
+
+'''
+from .views import (
     LoginView, LogoutView, UserDetailsView, PasswordChangeView,
     PasswordResetView, PasswordResetConfirmView
 )
@@ -19,3 +36,4 @@ urlpatterns = patterns(
     url(r'^password/change/$', PasswordChangeView.as_view(),
         name='rest_password_change'),
 )
+'''

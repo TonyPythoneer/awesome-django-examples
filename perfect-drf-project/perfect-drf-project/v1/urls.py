@@ -7,6 +7,12 @@
 from django.conf.urls import include, url
 from .users import urls as user_urls
 
-urlpatterns = [
+from . import views
+
+instance_api_urlpatterns = [
     url(r'^users/', include(user_urls, namespace='users')),
+]
+
+urlpatterns = instance_api_urlpatterns + [
+    url(r'^$', views.version_root, name='v1_root'),
 ]

@@ -6,5 +6,5 @@ from rest_framework.reverse import reverse
 @api_view(('GET',))
 def api_root(request, format=None):
     return Response({
-        'v1': reverse('v1', request=request, format=format),
+        #'hello': reverse('api:default:users', request=request, format=format),
     })

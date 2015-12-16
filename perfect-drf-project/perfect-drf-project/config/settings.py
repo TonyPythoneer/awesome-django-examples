@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 DJANGO_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -54,7 +53,7 @@ PORJECT_APPS = (
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PORJECT_APPS
 
 #=======================
-AUTH_USER_MODEL = 'api_root.models.user.User'
+AUTH_USER_MODEL = 'api_root.User'
 
 #=======================
 DJANGO_MIDDLEWARE_CLASSES = (
@@ -70,6 +69,7 @@ DJANGO_MIDDLEWARE_CLASSES = (
 
 LOCAL_MIDDLEWARE_CLASSES = (
     'api_root.middleware.version_api.VersioningAPIMiddleware',
+    #'api_root.middleware.status.StatusMiddleware',
 )
 
 MIDDLEWARE_CLASSES = DJANGO_MIDDLEWARE_CLASSES + LOCAL_MIDDLEWARE_CLASSES
