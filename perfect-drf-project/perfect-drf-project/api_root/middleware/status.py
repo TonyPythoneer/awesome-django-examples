@@ -9,7 +9,9 @@
     https://docs.djangoproject.com/en/1.8/topics/http/middleware/#hooks-and-application-order
 """
 from rest_framework import status
+from rest_framework.serializers import Serializer
 from rest_framework.response import Response
+from rest_framework.utils.serializer_helpers import ReturnDict
 
 
 class RestfulStatusMiddleware(object):
@@ -27,14 +29,17 @@ class RestfulStatusMiddleware(object):
         """process_template_response
         """
         if self.is_rest_framework_response(response):
+            if not response.data:
+                response.data = ReturnDict({}, serializer=Serializer)
+            #import pdb; pdb.set_trace();
             if self.is_dict_of_data(response.data):
-                #import pdb; pdb.set_trace();
                 if status.is_success(response.status_code):
                     response.data['status'] = 'ok'
                     #response.data['status_code'] = response.status_code
                     #response.data['status_text'] = response.status_text
                 if status.is_client_error(response.status_code):
                     response.data['status'] = 'error'
+            print response.data
         return response
 
     def is_rest_framework_response(self, response):

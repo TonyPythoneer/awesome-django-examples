@@ -69,7 +69,7 @@ DJANGO_MIDDLEWARE_CLASSES = (
 
 LOCAL_MIDDLEWARE_CLASSES = (
     'api_root.middleware.version_api.VersioningAPIMiddleware',
-    'api_root.middleware.status.RestfulStatusMiddleware',
+    #'api_root.middleware.status.RestfulStatusMiddleware',
 )
 
 MIDDLEWARE_CLASSES = DJANGO_MIDDLEWARE_CLASSES + LOCAL_MIDDLEWARE_CLASSES

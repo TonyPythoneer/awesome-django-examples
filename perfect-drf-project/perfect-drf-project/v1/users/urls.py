@@ -1,12 +1,22 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#  @first_date    2015
+#  @date          2015
+"""v1/users/urls
+"""
 from django.conf.urls import patterns, url
 
-from rest_framework.routers import DefaultRouter
-
-from .views import SignUpView
+from .views import auth, personal
 
 
 urlpatterns = [
-    url(r'^register/?$', SignUpView.as_view(), name='register'),
+    #
+    url(r'^register$', auth.SignUpView.as_view(), name='user-register'),
+    url(r'^login$', auth.LoginView.as_view(), name='user-login'),
+    url(r'^logout$', auth.LogoutView.as_view(), name='user-logout'),
+    #
+    url(r'^me$', personal.AboutMeView.as_view(), name='user-me'),
+    url(r'^(?P<pk>[0-9]+)$', personal.UserDetailView.as_view(), name='user-detail'),
 ]
 
 
