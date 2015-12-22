@@ -1,0 +1,253 @@
+{
+	"id": "34063c16-e3c4-86bf-5ebb-fb6caa770e4d",
+	"name": "[perfect-drf-project] Users API",
+	"description": "",
+	"order": [
+		"6b8e488f-6509-f3d4-d8e3-869e478ffe7b",
+		"bbb5585b-0cbe-85f3-03eb-15d45a2ccce9",
+		"d823ab88-1fe6-c805-58ec-f46f7a28b06f",
+		"d1ee80bc-f289-d048-71a9-45eb6c3fd04e",
+		"122ea1e5-3366-265e-3e88-18fe425898b0",
+		"c6b51adb-a2c5-d609-9aa5-cbc86a7b9aea",
+		"679c62a4-56f9-9021-0c1b-bd411b42f66d"
+	],
+	"folders": [],
+	"timestamp": 1450164516853,
+	"owner": 0,
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "122ea1e5-3366-265e-3e88-18fe425898b0",
+			"headers": "X-API-VERSION: v1\nAuthorization: Token 9a09f98510d97988213864ef4a2f380c0fd21bc2\n",
+			"url": "http://127.0.0.1:8000/api/users/me",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "PATCH",
+			"data": [
+				{
+					"key": "username",
+					"value": "tonypythoneer@gmail.com",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1450762793508,
+			"name": "update me",
+			"description": "",
+			"collectionId": "34063c16-e3c4-86bf-5ebb-fb6caa770e4d",
+			"responses": []
+		},
+		{
+			"id": "679c62a4-56f9-9021-0c1b-bd411b42f66d",
+			"headers": "X-API-VERSION: v1\nAuthorization: Token 9a09f98510d97988213864ef4a2f380c0fd21bc2\n",
+			"url": "http://127.0.0.1:8000/api/users/password_change",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "PATCH",
+			"data": [
+				{
+					"key": "old_password",
+					"value": "tonypythoneer@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "new_password1",
+					"value": "tonypythoneer@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "new_password2",
+					"value": "tonypythoneer@gmail.com",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1450767420013,
+			"name": "password change",
+			"description": "",
+			"collectionId": "34063c16-e3c4-86bf-5ebb-fb6caa770e4d",
+			"responses": []
+		},
+		{
+			"id": "6b8e488f-6509-f3d4-d8e3-869e478ffe7b",
+			"headers": "X-API-VERSION: v1\nAuthorization: Token 1dde4d34667f3f78579340d5ac178b1a906169d2\n",
+			"url": "http://127.0.0.1:8000/api/users/register",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "tonypythoneer@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "tonypythoneer@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "tonypythoneer@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "first_name",
+					"value": "tonypythoneer",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "last_name",
+					"value": "tonypythoneer",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1450762608502,
+			"name": "register",
+			"description": "",
+			"collectionId": "34063c16-e3c4-86bf-5ebb-fb6caa770e4d",
+			"responses": []
+		},
+		{
+			"id": "bbb5585b-0cbe-85f3-03eb-15d45a2ccce9",
+			"headers": "X-API-VERSION: v1\nAuthorization: Token 1dde4d34667f3f78579340d5ac178b1a906169d2\n",
+			"url": "http://127.0.0.1:8000/api/users/login",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "tonypythoneer@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "tonypythoneer@gmail.com",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1450762616535,
+			"name": "login",
+			"description": "",
+			"collectionId": "34063c16-e3c4-86bf-5ebb-fb6caa770e4d",
+			"responses": []
+		},
+		{
+			"id": "c6b51adb-a2c5-d609-9aa5-cbc86a7b9aea",
+			"headers": "X-API-VERSION: v1\nAuthorization: Token 9a09f98510d97988213864ef4a2f380c0fd21bc2\n",
+			"url": "http://127.0.0.1:8000/api/users/me",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "34063c16-e3c4-86bf-5ebb-fb6caa770e4d",
+			"data": [
+				{
+					"key": "username",
+					"value": "tonypythoneer@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "first_name",
+					"value": "123",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "get me",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1450767194571,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "d1ee80bc-f289-d048-71a9-45eb6c3fd04e",
+			"headers": "X-API-VERSION: v1\nAuthorization: Token 09e74d33d2d9b32ffc4e26b9e7c7efa628d4f254\n",
+			"url": "http://127.0.0.1:8000/api/users/me",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "DELETE",
+			"collectionId": "34063c16-e3c4-86bf-5ebb-fb6caa770e4d",
+			"data": [],
+			"dataMode": "params",
+			"name": "delete me",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1450345407581,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "d823ab88-1fe6-c805-58ec-f46f7a28b06f",
+			"headers": "X-API-VERSION: v1\nAuthorization: Token 717f73fc0ff97097e7274e7c8695cc50c5c54a22\n",
+			"url": "http://127.0.0.1:8000/api/users/logout",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "DELETE",
+			"collectionId": "34063c16-e3c4-86bf-5ebb-fb6caa770e4d",
+			"data": [
+				{
+					"key": "username",
+					"value": "tony_yang9@tutk.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "tony_yang9@tutk.com",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"name": "logout",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1450337774463,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
