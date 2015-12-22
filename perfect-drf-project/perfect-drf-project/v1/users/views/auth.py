@@ -61,7 +61,6 @@ class LoginView(generics.CreateAPIView):
 
 
 class LogoutView(generics.DestroyAPIView):
-
     """
     Calls Django logout method and delete the Token object
     assigned to the current User object.
@@ -79,4 +78,3 @@ class LogoutView(generics.DestroyAPIView):
         #logout(request)
 
         return Response({'fuck': 123}, status=status.HTTP_204_NO_CONTENT)
-
