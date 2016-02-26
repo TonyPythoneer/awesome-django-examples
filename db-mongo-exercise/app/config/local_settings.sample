@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#  @first_date    2016
+#  @date          2016
+#  @version       0.1
+"""local settings
+"""
+from __future__ import unicode_literals
+
+DEBUG = False
+ALLOWED_HOSTS = ['*']
+
+SHA256_MAGIC = ''
+HTTP_HEADER_KEY = {'X-XSS-Protection': '1;mode=block',
+                   'X-Content-Type-Options': 'nosniff'}
+
+TOKEN_EXPIRED_TIME = 86400  # Seconds
+
+# Database
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'me@gmail.com'
+EMAIL_HOST_PASSWORD = 'password'
