@@ -2,30 +2,32 @@
 # -*- coding: utf-8 -*-
 #  @first_date    2016
 #  @date          2016
-"""
+"""users/views/auth
 """
 from rest_framework import status, generics
-from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+
+from ..serializers.auth import SignUpSerializer
+from ..models import User
 
 
 class SignUpView(generics.CreateAPIView):
     """SignUpView
     """
+    model_class = User
+    serializer_class = SignUpSerializer
     permission_classes = (AllowAny,)
-    #serializer_class = LoginSerializer
-    #esponse_serializer = TokenSerializer
-
-    def get_response(self):
-        token_data = self.response_serializer(self.token).data
-        return Response(token_data, status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
-        print request.data
-        '''
+        # Validation process: Receive request and validate data
         self.serializer = self.get_serializer(data=self.request.data)
         self.serializer.is_valid(raise_exception=True)
-        self.login()
-        '''
-        return Response({}, status=status.HTTP_200_OK)
+        data = self.serializer.data
 
+        #
+        # a = self.model_class.create_user(**data)
+        instance = self.model_class(data=data)
+        a = instance.create_user(**data)
+
+        return Response(a, status=status.HTTP_200_OK)
