@@ -11,4 +11,3 @@ class SignUpSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     email = serializers.EmailField(required=True)
     password = serializers.CharField(required=True, min_length=3)
-

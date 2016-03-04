@@ -103,5 +103,5 @@ STATIC_URL = '/static/'
 
 # REST_FRAMEWORK
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'app.my_app.utils.custom_exception_handler'
+    'EXCEPTION_HANDLER': 'utils.exception_handlers.api_exception_handler'
 }

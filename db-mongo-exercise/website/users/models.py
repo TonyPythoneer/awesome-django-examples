@@ -33,7 +33,7 @@ class User(object):
     }
     '''
     INDEXES = db.User.create_indexes([
-        IndexModel([("username", ASCENDING)], unique=True),
+        IndexModel([("username", ASCENDING), ("email", ASCENDING)], unique=True),
     ])
     '''
 
@@ -72,11 +72,7 @@ class User(object):
     def create_user(cls, username, email, password):
         '''create user'''
         # Data process: populating the serializer and validate data
-        instance = cls(username=username, email=email, password=password)
-        instance.set_password(password)
-        print instance.data
-        result = instance.objects.insert_one(instance.data)
-        print dir(result)
-        print type(result)
-        instance.identity = result.inserted_id
-        return instance
+        model = cls(username=username, email=email, password=password)
+        model.set_password(password)
+        model.identity = model.objects.insert_one(model.data).inserted_id
+        return model

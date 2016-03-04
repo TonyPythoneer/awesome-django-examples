@@ -4,38 +4,38 @@
 #  @date          2016
 """users/views/auth
 """
-from django.db import IntegrityError
-
 from rest_framework import status, generics
-from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.exceptions import APIException
 
 from pymongo.errors import DuplicateKeyError
 
-from ..serializers.auth import SignUpSerializer
+from ..serializers import UserSerializer
+from ..req_serializers.auth import SignUpSerializer
 from ..models import User
+from utils.error_codes import err_users
 
 
 class SignUpView(generics.CreateAPIView):
-    """SignUpView
-    """
+    """SignUpView"""
     model_class = User
-    serializer_class = SignUpSerializer
-    permission_classes = (AllowAny,)
+    model_serializer_class = UserSerializer
+    req_serializer_class = SignUpSerializer
 
     def post(self, request, *args, **kwargs):
         # Validation process: Receive request and validate data
-        self.serializer = self.get_serializer(data=self.request.data)
-        self.serializer.is_valid(raise_exception=True)
-        data = self.serializer.data
+        req_serializer = self.req_serializer_class(data=self.request.data)
+        req_serializer.is_valid(raise_exception=True)
+        data = req_serializer.data
+        print data
 
-        #
-        # a = self.model_class.create_user(**data)
+        # Model process: Ceate new user
         try:
-            instance = self.model_class.create_user(**data)
-        except DuplicateKeyError as err:
-            raise APIException({"fuck": 13})
-        print instance.data
+            model = self.model_class.create_user(**data)
+        except DuplicateKeyError:
+            return Response(err_users.REGISTERED_ACC,
+                            status=status.HTTP_400_BAD_REQUEST)
 
-        return Response({}, status=status.HTTP_200_OK)
+        # Result process: Serialize model
+        ret = self.model_serializer_class(model).data
+
+        return Response(ret, status=status.HTTP_200_OK)
