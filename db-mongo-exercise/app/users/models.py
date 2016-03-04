@@ -2,54 +2,81 @@
 # -*- coding: utf-8 -*-
 #  @first_date    2016
 #  @date          2016
-"""User
-"""
+'''User
+'''
 import hashlib
 from datetime import datetime
-
-from rest_framework import serializers
 
 from pymongo import IndexModel, ASCENDING, DESCENDING
 
 from mongo_connector.connector import db
 
 
+class User(object):
+    # FIELDS
+    _id = None
+    username = None
+    email = None
+    password = None
+    updated_at = None
 
-def _hashed_password(password):
-    return hashlib.sha1(password).hexdigest()
+    # manager
+    objects = db.User
 
-
-class User(serializers.Serializer):
-    """User"""
-    username = serializers.CharField()
-    email = serializers.EmailField()
-    password = serializers.CharField()
-    updated_at = serializers.DateTimeField(default=datetime.utcnow())
-
+    # meta
+    # fieldname and default as a pair
+    FIELDS = {
+        "_id": None,
+        "username": None,
+        "email": None,
+        "updated_at": datetime.utcnow,
+    }
     '''
     INDEXES = db.User.create_indexes([
         IndexModel([("username", ASCENDING)], unique=True),
     ])
     '''
-    MODEL = db.User
 
-    def save(self, *args, **kwargs):
-        data = self.validated_data
+    def __init__(self, **kwargs):
+        for key, default in self.FIELDS.items():
+            if hasattr(default, '__call__'):
+                default = default()
+            value = kwargs.get(key, default)
+            self.__dict__[key] = value
+
+    def __repr__(self):
+        tmpl = "<User(username='%s', email='%s')>"
+        args = (self.username, self.email)
+        return tmpl % args
+
+    @property
+    def identity(self):
+        '''return private variable'''
+        return self._id
+
+    @identity.setter
+    def identity(self, identity):
+        '''access private variable'''
+        self._id = identity
+
+    @property
+    def data(self):
+        '''return data'''
+        return {key: self.__dict__[key] for key in self.FIELDS if self.__dict__.get(key)}
 
     def set_password(self, password):
-        self.validated_data["password"] = _hashed_password(password)
+        '''set password'''
+        self.password = hashlib.sha1(password).hexdigest()
 
-    def create_user(self, username, email, password):
+    @classmethod
+    def create_user(cls, username, email, password):
+        '''create user'''
         # Data process: populating the serializer and validate data
-        super(User, self).__init__(data={
-            "username": username,
-            "email": email,
-            "password": password,
-        })
-        self.is_valid()
-
-        # FUCK: 999
-        print "fuck"
-        self.set_password(password)
-        obj_id = self.MODEL.insert_one(self.validated_data)
-        return obj_id
+        instance = cls(username=username, email=email, password=password)
+        instance.set_password(password)
+        print instance.data
+        result = instance.objects.insert_one(instance.data)
+        print dir(result)
+        print type(result)
+        instance.identity = result.inserted_id
+        return instance
