@@ -10,9 +10,10 @@ from datetime import datetime
 from pymongo import IndexModel, ASCENDING, DESCENDING
 
 from mongo_connector.connector import db
+from mongo_connector.documents import Document
 
 
-class User(object):
+class User(Document):
     # FIELDS
     _id = None
     username = None
@@ -37,32 +38,10 @@ class User(object):
     ])
     '''
 
-    def __init__(self, **kwargs):
-        for key, default in self.FIELDS.items():
-            if hasattr(default, '__call__'):
-                default = default()
-            value = kwargs.get(key, default)
-            self.__dict__[key] = value
-
     def __repr__(self):
         tmpl = "<User(username='%s', email='%s')>"
         args = (self.username, self.email)
         return tmpl % args
-
-    @property
-    def identity(self):
-        '''return private variable'''
-        return self._id
-
-    @identity.setter
-    def identity(self, identity):
-        '''access private variable'''
-        self._id = identity
-
-    @property
-    def data(self):
-        '''return data'''
-        return {key: self.__dict__[key] for key in self.FIELDS if self.__dict__.get(key)}
 
     def set_password(self, password):
         '''set password'''

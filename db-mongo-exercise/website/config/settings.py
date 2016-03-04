@@ -49,7 +49,6 @@ PROJECT_APPS = (
 
 INSTALLED_APPS += THIRD_PARTY_APPS + PROJECT_APPS
 
-
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
